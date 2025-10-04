@@ -10,21 +10,23 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
-      - name: Checkout del codigo
+      - name: Checkout del repositorio
         uses: actions/checkout@v4
 
-      - name: Ejecutar programa
-        run: node index.js
-
+      - name: Configurar Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '20'
+          
+      - name: Ejecutar programa
+        run: node index.js
 
       - name: Enviar notificación a ntfy.sh
+        if: success()
         run: |
           MENSAJE="El workflow de CI/CD de 'Hola Mundo' ha finalizado con ÉXITO. \
-          Repo: ${{ github.repository }} 
-          Commit: ${{ github.sha }} 
+          Repo: ${{ github.repository }} \
+          Commit: ${{ github.sha }} \
           Usuario: ${{ github.actor }}"
 
           URL_NTFY="https://ntfy.sh/devops-itla"
