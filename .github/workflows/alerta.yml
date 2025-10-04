@@ -25,7 +25,7 @@ jobs:
       - name: Enviar notificación a ntfy.sh
         if: success()
         run: |
-          MENSAJE="El workflow de CI/CD de 'Hola Mundo' ha finalizado con ÉXITO. \
+          MENSAJE="El workflow de CI/CD de 'Hola Mundo' ha finalizado con ÉXITO. 
           Repo: ${{ github.repository }} 
           Commit: ${{ github.sha }} 
           Usuario: ${{ github.actor }}"
