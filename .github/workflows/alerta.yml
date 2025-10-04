@@ -26,8 +26,8 @@ jobs:
         if: success()
         run: |
           MENSAJE="El workflow de CI/CD de 'Hola Mundo' ha finalizado con ÉXITO. \
-          Repo: ${{ github.repository }} \
-          Commit: ${{ github.sha }} \
+          Repo: ${{ github.repository }} 
+          Commit: ${{ github.sha }} 
           Usuario: ${{ github.actor }}"
 
           URL_NTFY="https://ntfy.sh/devops-itla"
