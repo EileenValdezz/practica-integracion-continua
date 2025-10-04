@@ -1,0 +1,36 @@
+name: Notificación CI/CD
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout del codigo
+        uses: actions/checkout@v4
+
+      - name: Ejecutar programa
+        run: node index.js
+
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Enviar notificación a ntfy.sh
+        run: |
+          MENSAJE="El workflow de CI/CD de 'Hola Mundo' ha finalizado con ÉXITO. \
+          Repo: ${{ github.repository }} 
+          Commit: ${{ github.sha }} 
+          Usuario: ${{ github.actor }}"
+
+          URL_NTFY="https://ntfy.sh/devops-itla"
+
+          curl -d "$MENSAJE" \
+               -H "Title: ✅ CI/CD Exitoso - GitHub Actions" \
+               -H "Priority: high" \
+               -H "Tags: github,success,itla" \
+               "$URL_NTFY"
